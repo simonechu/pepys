@@ -1,0 +1,1269 @@
+---
+title: "html_to_df"
+author: "Simone Chu"
+date: "12/4/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(rlang)
+library(usethis)
+library(rvest)
+library(readr)
+library(tidytext)
+library(tidyverse)
+library(gt)
+```
+
+
+```{r unnest_1665}
+
+# For entries from 1665
+jan1665 <- paste(readLines("1665_01.htm"))
+
+jan1665 <- data.frame(jan1665, stringsAsFactors = FALSE)
+
+jan1665_tidy <- jan1665 %>%
+  unnest_tokens(word, jan1665) %>%
+  filter(word %in% c("static", "great", "staid") == FALSE)
+
+jan1665_tidy$month <- "1665-01"
+
+  # Paragraph breaks were denoted with a "<p>", so I filtered that out because it was recorded
+  # as appearing the most frequently. 
+
+jan1665_sentiment <- jan1665_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment)
+
+feb1665 <- paste(readLines("1665_02.htm"))
+
+feb1665 <- data.frame(feb1665, stringsAsFactors = FALSE)
+
+feb1665_tidy <- feb1665 %>%
+  unnest_tokens(word, feb1665) %>%
+  filter(word %in% c("static", "great", "staid") == FALSE)
+
+feb1665_tidy$month <- "1665-02"
+
+feb1665_sentiment <- feb1665_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment)
+
+mar1665 <- paste(readLines("1665_03.htm"))
+
+mar1665 <- data.frame(mar1665, stringsAsFactors = FALSE)
+
+mar1665_tidy <- mar1665 %>%
+  unnest_tokens(word, mar1665) %>%
+  filter(word %in% c("static", "great", "staid") == FALSE)
+
+mar1665_tidy$month <- "1665-03"
+
+mar1665_sentiment <- mar1665_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment)
+
+apr1665 <- paste(readLines("1665_04.htm"))
+
+apr1665 <- data.frame(apr1665, stringsAsFactors = FALSE)
+
+apr1665_tidy <- apr1665 %>%
+  unnest_tokens(word, apr1665) %>%
+  filter(word %in% c("static", "great", "staid") == FALSE)
+
+apr1665_tidy$month <- "1665-04"
+
+apr1665_sentiment <- apr1665_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment)
+
+may1665 <- paste(readLines("1665_05.htm"))
+
+may1665 <- data.frame(may1665, stringsAsFactors = FALSE)
+
+may1665_tidy <- may1665 %>%
+  unnest_tokens(word, may1665) %>%
+  filter(word %in% c("static", "great", "staid") == FALSE)
+
+may1665_tidy$month <- "1665-05"
+
+may1665_sentiment <- may1665_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment)
+
+jun1665 <- paste(readLines("1665_06.htm"))
+
+jun1665 <- data.frame(jun1665, stringsAsFactors = FALSE)
+
+jun1665_tidy <- jun1665 %>%
+  unnest_tokens(word, jun1665) %>%
+  filter(word %in% c("static", "great", "staid") == FALSE)
+
+jun1665_tidy$month <- "1665-06"
+
+jun1665_sentiment <- jun1665_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment)
+
+jul1665 <- paste(readLines("1665_07.htm"))
+
+jul1665 <- data.frame(jul1665, stringsAsFactors = FALSE)
+
+jul1665_tidy <- jul1665 %>%
+  unnest_tokens(word, jul1665) %>%
+  filter(word %in% c("static", "great", "staid") == FALSE)
+
+jul1665_tidy$month <- "1665-07"
+
+jul1665_sentiment <- jul1665_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment)
+
+aug1665 <- paste(readLines("1665_08.htm"))
+
+aug1665 <- data.frame(aug1665, stringsAsFactors = FALSE)
+
+aug1665_tidy <- aug1665 %>%
+  unnest_tokens(word, aug1665) %>%
+  filter(word %in% c("static", "great", "staid") == FALSE)
+
+aug1665_tidy$month <- "1665-08"
+
+aug1665_sentiment <- aug1665_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment)
+
+sep1665 <- paste(readLines("1665_09.htm"))
+
+sep1665 <- data.frame(sep1665, stringsAsFactors = FALSE)
+
+sep1665_tidy <- sep1665 %>%
+  unnest_tokens(word, sep1665) %>%
+  filter(word %in% c("static", "great", "staid") == FALSE)
+
+sep1665_tidy$month <- "1665-09"
+
+sep1665_sentiment <- sep1665_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment)
+
+oct1665 <- paste(readLines("1665_10.htm"))
+
+oct1665 <- data.frame(oct1665, stringsAsFactors = FALSE)
+
+oct1665_tidy <- oct1665 %>%
+  unnest_tokens(word, oct1665) %>%
+  filter(word %in% c("static", "great", "staid") == FALSE)
+
+oct1665_tidy$month <- "1665-10"
+
+oct1665_sentiment <- oct1665_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment)
+
+nov1665 <- paste(readLines("1665_11.htm"))
+
+nov1665 <- data.frame(nov1665, stringsAsFactors = FALSE)
+
+nov1665_tidy <- nov1665 %>%
+  unnest_tokens(word, nov1665) %>%
+  filter(word %in% c("static", "great", "staid") == FALSE)
+
+nov1665_tidy$month <- "1665-11"
+
+nov1665_sentiment <- nov1665_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment)
+
+dec1665 <- paste(readLines("1665_12.htm"))
+
+dec1665 <- data.frame(dec1665, stringsAsFactors = FALSE)
+
+dec1665_tidy <- dec1665 %>%
+  unnest_tokens(word, dec1665) %>%
+  filter(word %in% c("static", "great", "staid") == FALSE)
+
+dec1665_tidy$month <- "1665-12"
+
+dec1665_sentiment <- dec1665_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment)
+```
+```{r unnest_1666}
+
+# For entries from 1666
+
+jan1666 <- paste(readLines("1666_01.htm"))
+
+jan1666 <- data.frame(jan1666, stringsAsFactors = FALSE)
+
+jan1666_tidy <- jan1666 %>%
+  unnest_tokens(word, jan1666) %>%
+  filter(word %in% c("static", "great", "staid") == FALSE)
+
+jan1666_tidy$month <- "1666-01"
+
+jan1666_sentiment <- jan1666_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment)
+
+feb1666 <- paste(readLines("1666_02.htm"))
+
+feb1666 <- data.frame(feb1666, stringsAsFactors = FALSE)
+
+feb1666_tidy <- feb1666 %>%
+  unnest_tokens(word, feb1666) %>%
+  filter(word %in% c("static", "great", "staid") == FALSE)
+
+feb1666_tidy$month <- "1666-02"
+
+feb1666_sentiment <- feb1666_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment)
+
+mar1666 <- paste(readLines("1666_03.htm"))
+
+mar1666 <- data.frame(mar1666, stringsAsFactors = FALSE)
+
+mar1666_tidy <- mar1666 %>%
+  unnest_tokens(word, mar1666) %>%
+  filter(word %in% c("static", "great", "staid") == FALSE)
+
+mar1666_tidy$month <- "1666-03"
+
+mar1666_sentiment <- mar1666_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment)
+
+apr1666 <- paste(readLines("1666_04.htm"))
+
+apr1666 <- data.frame(apr1666, stringsAsFactors = FALSE)
+
+apr1666_tidy <- apr1666 %>%
+  unnest_tokens(word, apr1666) %>%
+  filter(word %in% c("static", "great", "staid") == FALSE)
+
+apr1666_tidy$month <- "1666-04"
+
+apr1666_sentiment <- apr1666_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment)
+
+may1666 <- paste(readLines("1666_05.htm"))
+
+may1666 <- data.frame(may1666, stringsAsFactors = FALSE)
+
+may1666_tidy <- may1666 %>%
+  unnest_tokens(word, may1666) %>%
+  filter(word %in% c("static", "great", "staid") == FALSE)
+
+may1666_tidy$month <- "1666-05"
+
+may1666_sentiment <- may1666_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment)
+
+jun1666 <- paste(readLines("1666_06.htm"))
+
+jun1666 <- data.frame(jun1666, stringsAsFactors = FALSE)
+
+jun1666_tidy <- jun1666 %>%
+  unnest_tokens(word, jun1666) %>%
+  filter(word %in% c("static", "great", "staid") == FALSE)
+
+jun1666_tidy$month <- "1666-06"
+
+jun1666_sentiment <- jun1666_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment)
+
+jul1666 <- paste(readLines("1666_07.htm"))
+
+jul1666 <- data.frame(jul1666, stringsAsFactors = FALSE)
+
+jul1666_tidy <- jul1666 %>%
+  unnest_tokens(word, jul1666) %>%
+  filter(word %in% c("static", "great", "staid") == FALSE)
+
+jul1666_tidy$month <- "1666-07"
+
+jul1666_sentiment <- jul1666_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment)
+
+aug1666 <- paste(readLines("1666_08.htm"))
+
+aug1666 <- data.frame(aug1666, stringsAsFactors = FALSE)
+
+aug1666_tidy <- aug1666 %>%
+  unnest_tokens(word, aug1666) %>%
+  filter(word %in% c("static", "great", "staid") == FALSE)
+
+aug1666_tidy$month <- "1666-08"
+
+aug1666_sentiment <- aug1666_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment)
+
+sep1666 <- paste(readLines("1666_09.htm"))
+
+sep1666 <- data.frame(sep1666, stringsAsFactors = FALSE)
+
+sep1666_tidy <- sep1666 %>%
+  unnest_tokens(word, sep1666) %>%
+  filter(word %in% c("static", "great", "staid") == FALSE)
+
+sep1666_tidy$month <- "1666-09"
+
+sep1666_sentiment <- sep1666_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment)
+
+oct1666 <- paste(readLines("1666_10.htm"))
+
+oct1666 <- data.frame(oct1666, stringsAsFactors = FALSE)
+
+oct1666_tidy <- oct1666 %>%
+  unnest_tokens(word, oct1666) %>%
+  filter(word %in% c("static", "great", "staid") == FALSE)
+
+oct1666_tidy$month <- "1666-10"
+
+oct1666_sentiment <- oct1666_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment)
+
+nov1666 <- paste(readLines("1666_11.htm"))
+
+nov1666 <- data.frame(nov1666, stringsAsFactors = FALSE)
+
+nov1666_tidy <- nov1666 %>%
+  unnest_tokens(word, nov1666) %>%
+  filter(word %in% c("static", "great", "staid") == FALSE)
+
+nov1666_tidy$month <- "1666-11"
+
+nov1666_sentiment <- nov1666_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment)
+
+dec1666 <- paste(readLines("1666_12.htm"))
+
+dec1666 <- data.frame(dec1666, stringsAsFactors = FALSE)
+
+dec1666_tidy <- dec1666 %>%
+  unnest_tokens(word, dec1666) %>%
+  filter(word %in% c("static", "great", "staid") == FALSE)
+
+dec1666_tidy$month <- "1666-12"
+
+dec1666_sentiment <- dec1666_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment)
+```
+
+``` {r top_tens_1665}
+
+posneg <- c("positive" = "#46b5e0", "negative" = "#123b62")
+
+jan1665_topten <- jan1665_sentiment %>%
+  arrange(desc(n)) %>%
+  slice(1:10) %>%
+  # Make word a factor in order of n
+  mutate(word = reorder(word, n)) %>% 
+  
+  ggplot(aes(x = word, y = n, fill = sentiment)) + 
+  geom_col() + 
+  scale_fill_manual(values=posneg) +
+  xlab("Word") + 
+  ylab("Number of Instances") + 
+  labs(title = "Top 10 Most Used Words in Pepys's Entries (Jan. 1665)",
+       fill = "Sentiment") + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+write_rds(jan1665_topten, "~/Desktop/pepys_diary/app/jan1665_topten.rds")
+
+feb1665_topten <- feb1665_sentiment %>%
+  arrange(desc(n)) %>%
+  slice(1:10) %>%
+  # Make word a factor in order of n
+  mutate(word = reorder(word, n)) %>% 
+  
+  ggplot(aes(x = word, y = n, fill = sentiment)) + 
+  geom_col() + 
+  scale_fill_manual(values=posneg) +
+  xlab("Word") + 
+  ylab("Number of Instances") + 
+  labs(title = "Top 10 Most Used Words in Pepys's Entries (Feb. 1665)",
+       fill = "Sentiment") + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+write_rds(feb1665_topten, "~/Desktop/pepys_diary/app/feb1665_topten.rds")
+
+mar1665_topten <- mar1665_sentiment %>%
+  arrange(desc(n)) %>%
+  slice(1:10) %>%
+  # Make word a factor in order of n
+  mutate(word = reorder(word, n)) %>% 
+  
+  ggplot(aes(x = word, y = n, fill = sentiment)) + 
+  geom_col() + 
+  scale_fill_manual(values=posneg) +
+  xlab("Word") + 
+  ylab("Number of Instances") + 
+  labs(title = "Top 10 Most Used Words in Pepys's Entries (March 1665)",
+       fill = "Sentiment") + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+write_rds(mar1665_topten, "~/Desktop/pepys_diary/app/mar1665_topten.rds")
+
+apr1665_topten <- apr1665_sentiment %>%
+  arrange(desc(n)) %>%
+  slice(1:10) %>%
+  # Make word a factor in order of n
+  mutate(word = reorder(word, n)) %>% 
+  
+  ggplot(aes(x = word, y = n, fill = sentiment)) + 
+  geom_col() + 
+  scale_fill_manual(values=posneg) +
+  xlab("Word") + 
+  ylab("Number of Instances") + 
+  labs(title = "Top 10 Most Used Words in Pepys's Entries (April 1665)",
+       fill = "Sentiment") + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+write_rds(apr1665_topten, "~/Desktop/pepys_diary/app/apr1665_topten.rds")
+
+may1665_topten <- may1665_sentiment %>%
+  arrange(desc(n)) %>%
+  slice(1:10) %>%
+  # Make word a factor in order of n
+  mutate(word = reorder(word, n)) %>% 
+  
+  ggplot(aes(x = word, y = n, fill = sentiment)) + 
+  geom_col() + 
+  scale_fill_manual(values=posneg) +
+  xlab("Word") + 
+  ylab("Number of Instances") + 
+  labs(title = "Top 10 Most Used Words in Pepys's Entries (May 1665)",
+       fill = "Sentiment") + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+write_rds(may1665_topten, "~/Desktop/pepys_diary/app/may1665_topten.rds")
+
+jun1665_topten <- jun1665_sentiment %>%
+  arrange(desc(n)) %>%
+  slice(1:10) %>%
+  # Make word a factor in order of n
+  mutate(word = reorder(word, n)) %>% 
+  
+  ggplot(aes(x = word, y = n, fill = sentiment)) + 
+  geom_col() + 
+  scale_fill_manual(values=posneg) +
+  xlab("Word") + 
+  ylab("Number of Instances") + 
+  labs(title = "Top 10 Most Used Words in Pepys's Entries (June 1665)",
+       fill = "Sentiment") + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+write_rds(jun1665_topten, "~/Desktop/pepys_diary/app/jun1665_topten.rds")
+
+jul1665_topten <- jul1665_sentiment %>%
+  arrange(desc(n)) %>%
+  slice(1:10) %>%
+  # Make word a factor in order of n
+  mutate(word = reorder(word, n)) %>% 
+  
+  ggplot(aes(x = word, y = n, fill = sentiment)) + 
+  geom_col() + 
+  scale_fill_manual(values=posneg) +
+  xlab("Word") + 
+  ylab("Number of Instances") + 
+  labs(title = "Top 10 Most Used Words in Pepys's Entries (July 1665)",
+       fill = "Sentiment") + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+write_rds(jul1665_topten, "~/Desktop/pepys_diary/app/jul1665_topten.rds")
+
+aug1665_topten <- aug1665_sentiment %>%
+  arrange(desc(n)) %>%
+  slice(1:10) %>%
+  # Make word a factor in order of n
+  mutate(word = reorder(word, n)) %>% 
+  
+  ggplot(aes(x = word, y = n, fill = sentiment)) + 
+  geom_col() + 
+  scale_fill_manual(values=posneg) +
+  xlab("Word") + 
+  ylab("Number of Instances") + 
+  labs(title = "Top 10 Most Used Words in Pepys's Entries (Aug. 1665)",
+       fill = "Sentiment") + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+write_rds(aug1665_topten, "~/Desktop/pepys_diary/app/aug1665_topten.rds")
+
+sep1665_topten <- sep1665_sentiment %>%
+  arrange(desc(n)) %>%
+  slice(1:10) %>%
+  # Make word a factor in order of n
+  mutate(word = reorder(word, n)) %>% 
+  
+  ggplot(aes(x = word, y = n, fill = sentiment)) + 
+  geom_col() + 
+  scale_fill_manual(values=posneg) +
+  xlab("Word") + 
+  ylab("Number of Instances") + 
+  labs(title = "Top 10 Most Used Words in Pepys's Entries (Sept. 1665)",
+       fill = "Sentiment") + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+write_rds(sep1665_topten, "~/Desktop/pepys_diary/app/sep1665_topten.rds")
+
+oct1665_topten <- oct1665_sentiment %>%
+  arrange(desc(n)) %>%
+  slice(1:10) %>%
+  # Make word a factor in order of n
+  mutate(word = reorder(word, n)) %>% 
+  
+  ggplot(aes(x = word, y = n, fill = sentiment)) + 
+  geom_col() + 
+  scale_fill_manual(values=posneg) +
+  xlab("Word") + 
+  ylab("Number of Instances") + 
+  labs(title = "Top 10 Most Used Words in Pepys's Entries (Oct. 1665)",
+       fill = "Sentiment") + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+write_rds(oct1665_topten, "~/Desktop/pepys_diary/app/oct1665_topten.rds")
+
+nov1665_topten <- nov1665_sentiment %>%
+  arrange(desc(n)) %>%
+  slice(1:10) %>%
+  # Make word a factor in order of n
+  mutate(word = reorder(word, n)) %>% 
+  
+  ggplot(aes(x = word, y = n, fill = sentiment)) + 
+  geom_col() + 
+  scale_fill_manual(values=posneg) +
+  xlab("Word") + 
+  ylab("Number of Instances") + 
+  labs(title = "Top 10 Most Used Words in Pepys's Entries (Nov. 1665)",
+       fill = "Sentiment") + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+write_rds(nov1665_topten, "~/Desktop/pepys_diary/app/nov1665_topten.rds")
+
+dec1665_topten <- dec1665_sentiment %>%
+  arrange(desc(n)) %>%
+  slice(1:10) %>%
+  # Make word a factor in order of n
+  mutate(word = reorder(word, n)) %>% 
+  
+  ggplot(aes(x = word, y = n, fill = sentiment)) + 
+  geom_col() + 
+  scale_fill_manual(values=posneg) +
+  xlab("Word") + 
+  ylab("Number of Instances") + 
+  labs(title = "Top 10 Most Used Words in Pepys's Entries (Dec. 1665)",
+       fill = "Sentiment") + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+write_rds(dec1665_topten, "~/Desktop/pepys_diary/app/dec1665_topten.rds")
+
+``` 
+
+``` {r top_tens_1666}
+
+posneg <- c("positive" = "#46b5e0", "negative" = "#123b62")
+
+jan1666_topten <- jan1666_sentiment %>%
+  arrange(desc(n)) %>%
+  slice(1:10) %>%
+  # Make word a factor in order of n
+  mutate(word = reorder(word, n)) %>% 
+  
+  ggplot(aes(x = word, y = n, fill = sentiment)) + 
+  geom_col() + 
+  scale_fill_manual(values=posneg) +
+  xlab("Word") + 
+  ylab("Number of Instances") + 
+  labs(title = "Top 10 Most Used Words in Pepys's Entries (Jan. 1666)",
+       fill = "Sentiment") + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+write_rds(jan1666_topten, "~/Desktop/pepys_diary/app/jan1666_topten.rds")
+
+feb1666_topten <- feb1666_sentiment %>%
+  arrange(desc(n)) %>%
+  slice(1:10) %>%
+  # Make word a factor in order of n
+  mutate(word = reorder(word, n)) %>% 
+  
+  ggplot(aes(x = word, y = n, fill = sentiment)) + 
+  geom_col() + 
+  scale_fill_manual(values=posneg) +
+  xlab("Word") + 
+  ylab("Number of Instances") + 
+  labs(title = "Top 10 Most Used Words in Pepys's Entries (Feb. 1666)",
+       fill = "Sentiment") + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+write_rds(feb1666_topten, "~/Desktop/pepys_diary/app/feb1666_topten.rds")
+
+mar1666_topten <- mar1666_sentiment %>%
+  arrange(desc(n)) %>%
+  slice(1:10) %>%
+  # Make word a factor in order of n
+  mutate(word = reorder(word, n)) %>% 
+  
+  ggplot(aes(x = word, y = n, fill = sentiment)) + 
+  geom_col() + 
+  scale_fill_manual(values=posneg) +
+  xlab("Word") + 
+  ylab("Number of Instances") + 
+  labs(title = "Top 10 Most Used Words in Pepys's Entries (March 1666)",
+       fill = "Sentiment") + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+write_rds(mar1666_topten, "~/Desktop/pepys_diary/app/mar1666_topten.rds")
+
+apr1666_topten <- apr1666_sentiment %>%
+  arrange(desc(n)) %>%
+  slice(1:10) %>%
+  # Make word a factor in order of n
+  mutate(word = reorder(word, n)) %>% 
+  
+  ggplot(aes(x = word, y = n, fill = sentiment)) + 
+  geom_col() + 
+  scale_fill_manual(values=posneg) +
+  xlab("Word") + 
+  ylab("Number of Instances") + 
+  labs(title = "Top 10 Most Used Words in Pepys's Entries (April 1666)",
+       fill = "Sentiment") + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+write_rds(apr1666_topten, "~/Desktop/pepys_diary/app/apr1666_topten.rds")
+
+may1666_topten <- may1666_sentiment %>%
+  arrange(desc(n)) %>%
+  slice(1:10) %>%
+  # Make word a factor in order of n
+  mutate(word = reorder(word, n)) %>% 
+  
+  ggplot(aes(x = word, y = n, fill = sentiment)) + 
+  geom_col() + 
+  scale_fill_manual(values=posneg) +
+  xlab("Word") + 
+  ylab("Number of Instances") + 
+  labs(title = "Top 10 Most Used Words in Pepys's Entries (May 1666)",
+       fill = "Sentiment") + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+write_rds(may1666_topten, "~/Desktop/pepys_diary/app/may1666_topten.rds")
+
+jun1666_topten <- jun1666_sentiment %>%
+  arrange(desc(n)) %>%
+  slice(1:10) %>%
+  # Make word a factor in order of n
+  mutate(word = reorder(word, n)) %>% 
+  
+  ggplot(aes(x = word, y = n, fill = sentiment)) + 
+  geom_col() + 
+  scale_fill_manual(values=posneg) +
+  xlab("Word") + 
+  ylab("Number of Instances") + 
+  labs(title = "Top 10 Most Used Words in Pepys's Entries (June 1666)",
+       fill = "Sentiment") + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+write_rds(jun1666_topten, "~/Desktop/pepys_diary/app/jun1666_topten.rds")
+
+jul1666_topten <- jul1666_sentiment %>%
+  arrange(desc(n)) %>%
+  slice(1:10) %>%
+  # Make word a factor in order of n
+  mutate(word = reorder(word, n)) %>% 
+  
+  ggplot(aes(x = word, y = n, fill = sentiment)) + 
+  geom_col() + 
+  scale_fill_manual(values=posneg) +
+  xlab("Word") + 
+  ylab("Number of Instances") + 
+  labs(title = "Top 10 Most Used Words in Pepys's Entries (July 1666)",
+       fill = "Sentiment") + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+write_rds(jul1666_topten, "~/Desktop/pepys_diary/app/jul1666_topten.rds")
+
+aug1666_topten <- aug1666_sentiment %>%
+  arrange(desc(n)) %>%
+  slice(1:10) %>%
+  # Make word a factor in order of n
+  mutate(word = reorder(word, n)) %>% 
+  
+  ggplot(aes(x = word, y = n, fill = sentiment)) + 
+  geom_col() + 
+  scale_fill_manual(values=posneg) +
+  xlab("Word") + 
+  ylab("Number of Instances") + 
+  labs(title = "Top 10 Most Used Words in Pepys's Entries (Aug. 1666)",
+       fill = "Sentiment") + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+write_rds(aug1666_topten, "~/Desktop/pepys_diary/app/aug1666_topten.rds")
+
+sep1666_topten <- sep1666_sentiment %>%
+  arrange(desc(n)) %>%
+  slice(1:10) %>%
+  # Make word a factor in order of n
+  mutate(word = reorder(word, n)) %>% 
+  
+  ggplot(aes(x = word, y = n, fill = sentiment)) + 
+  geom_col() + 
+  scale_fill_manual(values=posneg) +
+  xlab("Word") + 
+  ylab("Number of Instances") + 
+  labs(title = "Top 10 Most Used Words in Pepys's Entries (Sept. 1666)",
+       fill = "Sentiment") + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+write_rds(sep1666_topten, "~/Desktop/pepys_diary/app/sep1666_topten.rds")
+
+oct1666_topten <- oct1666_sentiment %>%
+  arrange(desc(n)) %>%
+  slice(1:10) %>%
+  # Make word a factor in order of n
+  mutate(word = reorder(word, n)) %>% 
+  
+  ggplot(aes(x = word, y = n, fill = sentiment)) + 
+  geom_col() + 
+  scale_fill_manual(values=posneg) +
+  xlab("Word") + 
+  ylab("Number of Instances") + 
+  labs(title = "Top 10 Most Used Words in Pepys's Entries (Oct. 1666)",
+       fill = "Sentiment") + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+write_rds(oct1666_topten, "~/Desktop/pepys_diary/app/oct1666_topten.rds")
+
+nov1666_topten <- nov1666_sentiment %>%
+  arrange(desc(n)) %>%
+  slice(1:10) %>%
+  # Make word a factor in order of n
+  mutate(word = reorder(word, n)) %>% 
+  
+  ggplot(aes(x = word, y = n, fill = sentiment)) + 
+  geom_col() + 
+  scale_fill_manual(values=posneg) +
+  xlab("Word") + 
+  ylab("Number of Instances") + 
+  labs(title = "Top 10 Most Used Words in Pepys's Entries (Nov. 1666)",
+       fill = "Sentiment") + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+write_rds(nov1666_topten, "~/Desktop/pepys_diary/app/nov1666_topten.rds")
+
+dec1666_topten <- dec1666_sentiment %>%
+  arrange(desc(n)) %>%
+  slice(1:10) %>%
+  # Make word a factor in order of n
+  mutate(word = reorder(word, n)) %>% 
+  
+  ggplot(aes(x = word, y = n, fill = sentiment)) + 
+  geom_col() + 
+  scale_fill_manual(values=posneg) +
+  xlab("Word") + 
+  ylab("Number of Instances") + 
+  labs(title = "Top 10 Most Used Words in Pepys's Entries (Dec. 1666)",
+       fill = "Sentiment") + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+write_rds(dec1666_topten, "~/Desktop/pepys_diary/app/dec1666_topten.rds")
+
+``` 
+
+```{r 1665_over_time}
+
+jan1665_ot <- jan1665_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  mutate(row = row_number()) %>%
+  count(index =  row %/% 5, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = positive - negative) %>%
+  
+  ggplot(aes(index, sentiment, fill = sentiment)) +
+  geom_bar(stat = "identity", show.legend = FALSE) +
+  labs(title = "How the Tone Changes",
+       subtitle = "A plot of the density of emotion words over the course of the month's diary entries.") + 
+  xlab("Time") +
+  ylab("Expression") +
+  theme(axis.text.x=element_blank())
+write_rds(jan1665_ot, 
+          "~/Desktop/pepys_diary/app/jan1665_ot.rds")
+
+feb1665_ot <- feb1665_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  mutate(row = row_number()) %>%
+  count(index =  row %/% 5, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = positive - negative) %>%
+  
+  ggplot(aes(index, sentiment, fill = sentiment)) +
+  geom_bar(stat = "identity", show.legend = FALSE) +
+  labs(title = "How the Tone Changes",
+       subtitle = "A plot of the density of emotion words over the course of the month's diary entries.") + 
+  xlab("Time") +
+  ylab("Expression") +
+  theme(axis.text.x=element_blank())
+write_rds(feb1665_ot, 
+          "~/Desktop/pepys_diary/app/feb1665_ot.rds")
+
+mar1665_ot <- mar1665_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  mutate(row = row_number()) %>%
+  count(index =  row %/% 5, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = positive - negative) %>%
+  
+  ggplot(aes(index, sentiment, fill = sentiment)) +
+  geom_bar(stat = "identity", show.legend = FALSE) +
+  labs(title = "How the Tone Changes",
+       subtitle = "A plot of the density of emotion words over the course of the month's diary entries.") + 
+  xlab("Time") +
+  ylab("Expression") +
+  theme(axis.text.x=element_blank())
+write_rds(mar1665_ot, 
+          "~/Desktop/pepys_diary/app/mar1665_ot.rds")
+
+apr1665_ot <- apr1665_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  mutate(row = row_number()) %>%
+  count(index =  row %/% 5, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = positive - negative) %>%
+  
+  ggplot(aes(index, sentiment, fill = sentiment)) +
+  geom_bar(stat = "identity", show.legend = FALSE) +
+  labs(title = "How the Tone Changes",
+       subtitle = "A plot of the density of emotion words over the course of the month's diary entries.") + 
+  xlab("Time") +
+  ylab("Expression") +
+  theme(axis.text.x=element_blank())
+write_rds(apr1665_ot, 
+          "~/Desktop/pepys_diary/app/apr1665_ot.rds")
+
+may1665_ot <- may1665_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  mutate(row = row_number()) %>%
+  count(index =  row %/% 5, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = positive - negative) %>%
+  
+  ggplot(aes(index, sentiment, fill = sentiment)) +
+  geom_bar(stat = "identity", show.legend = FALSE) +
+  labs(title = "How the Tone Changes",
+       subtitle = "A plot of the density of emotion words over the course of the month's diary entries.") + 
+  xlab("Time") +
+  ylab("Expression") +
+  theme(axis.text.x=element_blank())
+write_rds(may1665_ot, 
+          "~/Desktop/pepys_diary/app/may1665_ot.rds")
+
+jun1665_ot <- jun1665_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  mutate(row = row_number()) %>%
+  count(index =  row %/% 5, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = positive - negative) %>%
+  
+  ggplot(aes(index, sentiment, fill = sentiment)) +
+  geom_bar(stat = "identity", show.legend = FALSE) +
+  labs(title = "How the Tone Changes",
+       subtitle = "A plot of the density of emotion words over the course of the month's diary entries.") + 
+  xlab("Time") +
+  ylab("Expression") +
+  theme(axis.text.x=element_blank())
+write_rds(jun1665_ot, 
+          "~/Desktop/pepys_diary/app/jun1665_ot.rds")
+
+jul1665_ot <- jul1665_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  mutate(row = row_number()) %>%
+  count(index =  row %/% 5, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = positive - negative) %>%
+  
+  ggplot(aes(index, sentiment, fill = sentiment)) +
+  geom_bar(stat = "identity", show.legend = FALSE) +
+  labs(title = "How the Tone Changes",
+       subtitle = "A plot of the density of emotion words over the course of the month's diary entries.") + 
+  xlab("Time") +
+  ylab("Expression") +
+  theme(axis.text.x=element_blank())
+write_rds(jul1665_ot, 
+          "~/Desktop/pepys_diary/app/jul1665_ot.rds")
+
+aug1665_ot <- aug1665_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  mutate(row = row_number()) %>%
+  count(index =  row %/% 5, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = positive - negative) %>%
+  
+  ggplot(aes(index, sentiment, fill = sentiment)) +
+  geom_bar(stat = "identity", show.legend = FALSE) +
+  labs(title = "How the Tone Changes",
+       subtitle = "A plot of the density of emotion words over the course of the month's diary entries.") + 
+  xlab("Time") +
+  ylab("Expression") +
+  theme(axis.text.x=element_blank())
+write_rds(aug1665_ot, 
+          "~/Desktop/pepys_diary/app/aug1665_ot.rds")
+
+sep1665_ot <- sep1665_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  mutate(row = row_number()) %>%
+  count(index =  row %/% 5, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = positive - negative) %>%
+  
+  ggplot(aes(index, sentiment, fill = sentiment)) +
+  geom_bar(stat = "identity", show.legend = FALSE) +
+  labs(title = "How the Tone Changes",
+       subtitle = "A plot of the density of emotion words over the course of the month's diary entries.") + 
+  xlab("Time") +
+  ylab("Expression") +
+  theme(axis.text.x=element_blank())
+write_rds(sep1665_ot, 
+          "~/Desktop/pepys_diary/app/sep1665_ot.rds")
+
+oct1665_ot <- oct1665_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  mutate(row = row_number()) %>%
+  count(index =  row %/% 5, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = positive - negative) %>%
+  
+  ggplot(aes(index, sentiment, fill = sentiment)) +
+  geom_bar(stat = "identity", show.legend = FALSE) +
+  labs(title = "How the Tone Changes",
+       subtitle = "A plot of the density of emotion words over the course of the month's diary entries.") + 
+  xlab("Time") +
+  ylab("Expression") +
+  theme(axis.text.x=element_blank())
+write_rds(oct1665_ot, 
+          "~/Desktop/pepys_diary/app/oct1665_ot.rds")
+
+nov1665_ot <- nov1665_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  mutate(row = row_number()) %>%
+  count(index =  row %/% 5, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = positive - negative) %>%
+  
+  ggplot(aes(index, sentiment, fill = sentiment)) +
+  geom_bar(stat = "identity", show.legend = FALSE) +
+  labs(title = "How the Tone Changes",
+       subtitle = "A plot of the density of emotion words over the course of the month's diary entries.") + 
+  xlab("Time") +
+  ylab("Expression") +
+  theme(axis.text.x=element_blank())
+write_rds(nov1665_ot, 
+          "~/Desktop/pepys_diary/app/nov1665_ot.rds")
+
+dec1665_ot <- dec1665_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  mutate(row = row_number()) %>%
+  count(index =  row %/% 5, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = positive - negative) %>%
+  
+  ggplot(aes(index, sentiment, fill = sentiment)) +
+  geom_bar(stat = "identity", show.legend = FALSE) +
+  labs(title = "How the Tone Changes",
+       subtitle = "A plot of the density of emotion words over the course of the month's diary entries.") + 
+  xlab("Time") +
+  ylab("Expression") +
+  theme(axis.text.x=element_blank())
+write_rds(dec1665_ot, 
+          "~/Desktop/pepys_diary/app/dec1665_ot.rds")
+```
+
+```{r 1666_over_time}
+
+jan1666_ot <- jan1666_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  mutate(row = row_number()) %>%
+  count(index =  row %/% 5, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = positive - negative) %>%
+  
+  ggplot(aes(index, sentiment, fill = sentiment)) +
+  geom_bar(stat = "identity", show.legend = FALSE) +
+  labs(title = "How the Tone Changes",
+       subtitle = "A plot of the density of emotion words over the course of the month's diary entries.") + 
+  xlab("Time") +
+  ylab("Expression") +
+  theme(axis.text.x=element_blank())
+write_rds(jan1666_ot, 
+          "~/Desktop/pepys_diary/app/jan1666_ot.rds")
+
+feb1666_ot <- feb1666_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  mutate(row = row_number()) %>%
+  count(index =  row %/% 5, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = positive - negative) %>%
+  
+  ggplot(aes(index, sentiment, fill = sentiment)) +
+  geom_bar(stat = "identity", show.legend = FALSE) +
+  labs(title = "How the Tone Changes",
+       subtitle = "A plot of the density of emotion words over the course of the month's diary entries.") + 
+  xlab("Time") +
+  ylab("Expression") +
+  theme(axis.text.x=element_blank())
+write_rds(feb1666_ot, 
+          "~/Desktop/pepys_diary/app/feb1666_ot.rds")
+
+mar1666_ot <- mar1666_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  mutate(row = row_number()) %>%
+  count(index =  row %/% 5, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = positive - negative) %>%
+  
+  ggplot(aes(index, sentiment, fill = sentiment)) +
+  geom_bar(stat = "identity", show.legend = FALSE) +
+  labs(title = "How the Tone Changes",
+       subtitle = "A plot of the density of emotion words over the course of the month's diary entries.") + 
+  xlab("Time") +
+  ylab("Expression") +
+  theme(axis.text.x=element_blank())
+write_rds(mar1666_ot, 
+          "~/Desktop/pepys_diary/app/mar1666_ot.rds")
+
+apr1666_ot <- apr1666_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  mutate(row = row_number()) %>%
+  count(index =  row %/% 5, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = positive - negative) %>%
+  
+  ggplot(aes(index, sentiment, fill = sentiment)) +
+  geom_bar(stat = "identity", show.legend = FALSE) +
+  labs(title = "How the Tone Changes",
+       subtitle = "A plot of the density of emotion words over the course of the month's diary entries.") + 
+  xlab("Time") +
+  ylab("Expression") +
+  theme(axis.text.x=element_blank())
+write_rds(apr1666_ot, 
+          "~/Desktop/pepys_diary/app/apr1666_ot.rds")
+
+may1666_ot <- may1666_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  mutate(row = row_number()) %>%
+  count(index =  row %/% 5, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = positive - negative) %>%
+  
+  ggplot(aes(index, sentiment, fill = sentiment)) +
+  geom_bar(stat = "identity", show.legend = FALSE) +
+  labs(title = "How the Tone Changes",
+       subtitle = "A plot of the density of emotion words over the course of the month's diary entries.") + 
+  xlab("Time") +
+  ylab("Expression") +
+  theme(axis.text.x=element_blank())
+write_rds(may1666_ot, 
+          "~/Desktop/pepys_diary/app/may1666_ot.rds")
+
+jun1666_ot <- jun1666_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  mutate(row = row_number()) %>%
+  count(index =  row %/% 5, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = positive - negative) %>%
+  
+  ggplot(aes(index, sentiment, fill = sentiment)) +
+  geom_bar(stat = "identity", show.legend = FALSE) +
+  labs(title = "How the Tone Changes",
+       subtitle = "A plot of the density of emotion words over the course of the month's diary entries.") + 
+  xlab("Time") +
+  ylab("Expression") +
+  theme(axis.text.x=element_blank())
+write_rds(jun1666_ot, 
+          "~/Desktop/pepys_diary/app/jun1666_ot.rds")
+
+jul1666_ot <- jul1666_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  mutate(row = row_number()) %>%
+  count(index =  row %/% 5, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = positive - negative) %>%
+  
+  ggplot(aes(index, sentiment, fill = sentiment)) +
+  geom_bar(stat = "identity", show.legend = FALSE) +
+  labs(title = "How the Tone Changes",
+       subtitle = "A plot of the density of emotion words over the course of the month's diary entries.") + 
+  xlab("Time") +
+  ylab("Expression") +
+  theme(axis.text.x=element_blank())
+write_rds(jul1666_ot, 
+          "~/Desktop/pepys_diary/app/jul1666_ot.rds")
+
+aug1666_ot <- aug1666_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  mutate(row = row_number()) %>%
+  count(index =  row %/% 5, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = positive - negative) %>%
+  
+  ggplot(aes(index, sentiment, fill = sentiment)) +
+  geom_bar(stat = "identity", show.legend = FALSE) +
+  labs(title = "How the Tone Changes",
+       subtitle = "A plot of the density of emotion words over the course of the month's diary entries.") + 
+  xlab("Time") +
+  ylab("Expression") +
+  theme(axis.text.x=element_blank())
+write_rds(aug1666_ot, 
+          "~/Desktop/pepys_diary/app/aug1666_ot.rds")
+
+sep1666_ot <- sep1666_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  mutate(row = row_number()) %>%
+  count(index =  row %/% 5, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = positive - negative) %>%
+  
+  ggplot(aes(index, sentiment, fill = sentiment)) +
+  geom_bar(stat = "identity", show.legend = FALSE) +
+  labs(title = "How the Tone Changes",
+       subtitle = "A plot of the density of emotion words over the course of the month's diary entries.") + 
+  xlab("Time") +
+  ylab("Expression") +
+  theme(axis.text.x=element_blank())
+write_rds(sep1666_ot, 
+          "~/Desktop/pepys_diary/app/sep1666_ot.rds")
+
+oct1666_ot <- oct1666_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  mutate(row = row_number()) %>%
+  count(index =  row %/% 5, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = positive - negative) %>%
+  
+  ggplot(aes(index, sentiment, fill = sentiment)) +
+  geom_bar(stat = "identity", show.legend = FALSE) +
+  labs(title = "How the Tone Changes",
+       subtitle = "A plot of the density of emotion words over the course of the month's diary entries.") + 
+  xlab("Time") +
+  ylab("Expression") +
+  theme(axis.text.x=element_blank())
+write_rds(oct1666_ot, 
+          "~/Desktop/pepys_diary/app/oct1666_ot.rds")
+
+nov1666_ot <- nov1666_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  mutate(row = row_number()) %>%
+  count(index =  row %/% 5, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = positive - negative) %>%
+  
+  ggplot(aes(index, sentiment, fill = sentiment)) +
+  geom_bar(stat = "identity", show.legend = FALSE) +
+  labs(title = "How the Tone Changes",
+       subtitle = "A plot of the density of emotion words over the course of the month's diary entries.") + 
+  xlab("Time") +
+  ylab("Expression") +
+  theme(axis.text.x=element_blank())
+write_rds(nov1666_ot, 
+          "~/Desktop/pepys_diary/app/nov1666_ot.rds")
+
+dec1666_ot <- dec1666_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  mutate(row = row_number()) %>%
+  count(index =  row %/% 5, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = positive - negative) %>%
+  
+  ggplot(aes(index, sentiment, fill = sentiment)) +
+  geom_bar(stat = "identity", show.legend = FALSE) +
+  labs(title = "How the Tone Changes",
+       subtitle = "A plot of the density of emotion words over the course of the month's diary entries.") + 
+  xlab("Time") +
+  ylab("Expression") +
+  theme(axis.text.x=element_blank())
+write_rds(dec1666_ot, 
+          "~/Desktop/pepys_diary/app/dec1666_ot.rds")
+```
+
+```{r all_entries}
+
+pn <- c("positive" = "#46b5e0", "negative" = "#680c07")
+
+all_entries <- rbind(jan1665_tidy, feb1665_tidy, mar1665_tidy, apr1665_tidy,
+                     may1665_tidy, jun1665_tidy, jul1665_tidy, aug1665_tidy,
+                     sep1665_tidy, oct1665_tidy, nov1665_tidy, dec1665_tidy,
+                     jan1666_tidy, feb1666_tidy, mar1666_tidy, apr1666_tidy,
+                     may1666_tidy, jun1666_tidy, jul1666_tidy, aug1666_tidy,
+                     sep1666_tidy, oct1666_tidy, nov1666_tidy, dec1666_tidy)
+
+net_sent <- all_entries %>% group_by(month) %>% 
+  inner_join(get_sentiments("bing")) %>% count(sentiment) %>% 
+  spread(sentiment, n, fill = 0) %>% mutate(sentiment = positive - negative) %>%
+  
+  ggplot(aes(month, sentiment)) +
+  geom_bar(stat = "identity", width = 0.6, position = position_dodge(width = 0.3), show.legend = FALSE) +
+  labs(title = "Net Sentiment in Pepys's Diary During the Plague (1665-66)",
+       subtitle = "Higher scores indicate greater net positivity.") + 
+  xlab("Month") +
+  ylab("Net Sentiment") +
+  theme(axis.text.x=element_text(angle=45))
+
+write_rds(net_sent, "~/Desktop/pepys_diary/app/net_sent.rds")
+
+all_entries_posneg <- all_entries %>% group_by(month) %>% 
+  inner_join(get_sentiments("bing")) %>% count(sentiment) %>%
+  ggplot(aes(month, n, fill = sentiment, color = sentiment)) +
+  geom_bar(stat = "identity", width = 0.6, position = position_dodge(width = 0.4), show.legend = TRUE) + 
+  labs(title = "Positive and Negative Sentiment in Pepys's Diary, by Month") + 
+  xlab("Month") +
+  ylab("Number of Words") +
+  theme(axis.text.x=element_text(angle=45))
+
+write_rds(all_entries_posneg, "~/Desktop/pepys_diary/app/all_entries_posneg.rds") 
+
+all_entries_sentiment <- all_entries %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment)
+
+all_entries_top <- all_entries_sentiment %>%
+  filter(word != "static") %>%
+  arrange(desc(n)) %>%
+  slice(1:50) %>%
+  # Make word a factor in order of n
+  mutate(word = reorder(word, n)) %>% 
+  # select(-sentiment) %>%
+  
+  gt() %>%
+  tab_header(title = "Top 50 Most-Used Words in Pepys's Diary",
+             subtitle = "1665-1666") %>%
+  cols_label(word = "Word",
+             n = "Number of Appearances") 
+write_rds(all_entries_top, "~/Desktop/pepys_diary/app/all_entries_top.rds")
+
+plague_count <- all_entries %>%
+  filter(word %in% c("plague", "sicknesse", "sickness", "sicke"))
+
+plague_count_by_month = subset(plague_count, select = -c(word)) %>%
+  group_by(month) %>% 
+  count() %>% 
+  
+  ggplot(aes(month, n)) +
+  geom_bar(stat = "identity", width = 0.6, position = position_dodge(width = 0.3), show.legend = FALSE) +
+  labs(title = "Mentions of Plague or Sickness in Pepys's Diary, by Month (1665-66)") + 
+  xlab("Month") +
+  ylab("Number of Instances") +
+  scale_y_continuous() + 
+  theme(axis.text.x=element_text(angle=45))
+
+write_rds(plague_count_by_month, 
+          "~/Desktop/pepys_diary/app/plague_count_by_month.rds")
+
+death_count <- all_entries %>%
+  filter(word %in% c("death", "dead", "dying", "die"))
+
+death_count_by_month = subset(death_count, select = -c(word)) %>%
+  group_by(month) %>% 
+  count() %>% 
+  
+  ggplot(aes(month, n)) +
+  geom_bar(stat = "identity", width = 0.6, position = position_dodge(width = 0.25), fill = "#000000", show.legend = FALSE) +
+  labs(title = "Mentions of Death or Dying in Pepys's Diary, by Month (1665-66)") + 
+  xlab("Month") +
+  ylab("Number of Instances") +
+  scale_y_continuous() + 
+  theme(axis.text.x=element_text(angle=45))
+
+write_rds(death_count_by_month, 
+          "~/Desktop/pepys_diary/app/death_count_by_month.rds")
+
+```

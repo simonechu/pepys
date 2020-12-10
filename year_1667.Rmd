@@ -1,0 +1,245 @@
+---
+title: "year_1667"
+author: "Simone Chu"
+date: "12/9/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(rlang)
+library(usethis)
+library(rvest)
+library(readr)
+library(tidytext)
+library(tidyverse)
+library(gt)
+```
+
+``` {r}
+
+jan1667 <- paste(readLines("1667_01.htm"))
+
+jan1667 <- data.frame(jan1667, stringsAsFactors = FALSE)
+
+jan1667_tidy <- jan1667 %>%
+  unnest_tokens(word, jan1667) %>%
+  filter(word %in% c("static", "great", "staid") == FALSE)
+
+jan1667_tidy$month <- "1667-01"
+
+  # Paragraph breaks were denoted with a "<p>", so I filtered that out because it was recorded
+  # as appearing the most frequently. 
+
+jan1667_sentiment <- jan1667_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment)
+
+feb1667 <- paste(readLines("1667_02.htm"))
+
+feb1667 <- data.frame(feb1667, stringsAsFactors = FALSE)
+
+feb1667_tidy <- feb1667 %>%
+  unnest_tokens(word, feb1667) %>%
+  filter(word %in% c("static", "great", "staid") == FALSE)
+
+feb1667_tidy$month <- "1667-02"
+
+feb1667_sentiment <- feb1667_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment)
+
+mar1667 <- paste(readLines("1667_03.htm"))
+
+mar1667 <- data.frame(mar1667, stringsAsFactors = FALSE)
+
+mar1667_tidy <- mar1667 %>%
+  unnest_tokens(word, mar1667) %>%
+  filter(word %in% c("static", "great", "staid") == FALSE)
+
+mar1667_tidy$month <- "1667-03"
+
+mar1667_sentiment <- mar1667_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment)
+
+apr1667 <- paste(readLines("1667_04.htm"))
+
+apr1667 <- data.frame(apr1667, stringsAsFactors = FALSE)
+
+apr1667_tidy <- apr1667 %>%
+  unnest_tokens(word, apr1667) %>%
+  filter(word %in% c("static", "great", "staid") == FALSE)
+
+apr1667_tidy$month <- "1667-04"
+
+apr1667_sentiment <- apr1667_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment)
+
+may1667 <- paste(readLines("1667_05.htm"))
+
+may1667 <- data.frame(may1667, stringsAsFactors = FALSE)
+
+may1667_tidy <- may1667 %>%
+  unnest_tokens(word, may1667) %>%
+  filter(word %in% c("static", "great", "staid") == FALSE)
+
+may1667_tidy$month <- "1667-05"
+
+may1667_sentiment <- may1667_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment)
+
+jun1667 <- paste(readLines("1667_06.htm"))
+
+jun1667 <- data.frame(jun1667, stringsAsFactors = FALSE)
+
+jun1667_tidy <- jun1667 %>%
+  unnest_tokens(word, jun1667) %>%
+  filter(word %in% c("static", "great", "staid") == FALSE)
+
+jun1667_tidy$month <- "1667-06"
+
+jun1667_sentiment <- jun1667_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment)
+
+jul1667 <- paste(readLines("1667_07.htm"))
+
+jul1667 <- data.frame(jul1667, stringsAsFactors = FALSE)
+
+jul1667_tidy <- jul1667 %>%
+  unnest_tokens(word, jul1667) %>%
+  filter(word %in% c("static", "great", "staid") == FALSE)
+
+jul1667_tidy$month <- "1667-07"
+
+jul1667_sentiment <- jul1667_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment)
+
+aug1667 <- paste(readLines("1667_08.htm"))
+
+aug1667 <- data.frame(aug1667, stringsAsFactors = FALSE)
+
+aug1667_tidy <- aug1667 %>%
+  unnest_tokens(word, aug1667) %>%
+  filter(word %in% c("static", "great", "staid") == FALSE)
+
+aug1667_tidy$month <- "1667-08"
+
+aug1667_sentiment <- aug1667_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment)
+
+sep1667 <- paste(readLines("1667_09.htm"))
+
+sep1667 <- data.frame(sep1667, stringsAsFactors = FALSE)
+
+sep1667_tidy <- sep1667 %>%
+  unnest_tokens(word, sep1667) %>%
+  filter(word %in% c("static", "great", "staid") == FALSE)
+
+sep1667_tidy$month <- "1667-09"
+
+sep1667_sentiment <- sep1667_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment)
+
+oct1667 <- paste(readLines("1667_10.htm"))
+
+oct1667 <- data.frame(oct1667, stringsAsFactors = FALSE)
+
+oct1667_tidy <- oct1667 %>%
+  unnest_tokens(word, oct1667) %>%
+  filter(word %in% c("static", "great", "staid") == FALSE)
+
+oct1667_tidy$month <- "1667-10"
+
+oct1667_sentiment <- oct1667_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment)
+
+nov1667 <- paste(readLines("1667_11.htm"))
+
+nov1667 <- data.frame(nov1667, stringsAsFactors = FALSE)
+
+nov1667_tidy <- nov1667 %>%
+  unnest_tokens(word, nov1667) %>%
+  filter(word %in% c("static", "great", "staid") == FALSE)
+
+nov1667_tidy$month <- "1667-11"
+
+nov1667_sentiment <- nov1667_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment)
+
+dec1667 <- paste(readLines("1667_12.htm"))
+
+dec1667 <- data.frame(dec1667, stringsAsFactors = FALSE)
+
+dec1667_tidy <- dec1667 %>%
+  unnest_tokens(word, dec1667) %>%
+  filter(word %in% c("static", "great", "staid") == FALSE)
+
+dec1667_tidy$month <- "1667-12"
+
+dec1667_sentiment <- dec1667_tidy %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment)
+
+``` 
+
+``` {r}
+pn <- c("positive" = "#46b5e0", "negative" = "#680c07")
+
+all_entries_67 <- rbind(jan1667_tidy, feb1667_tidy, mar1667_tidy, apr1667_tidy,
+                     may1667_tidy, jun1667_tidy, jul1667_tidy, aug1667_tidy,
+                     sep1667_tidy, oct1667_tidy, nov1667_tidy, dec1667_tidy)
+
+net_sent_67 <- all_entries_67 %>% group_by(month) %>% 
+  inner_join(get_sentiments("bing")) %>% count(sentiment) %>% 
+  spread(sentiment, n, fill = 0) %>% mutate(sentiment = positive - negative) %>% 
+  ggplot(aes(month, sentiment)) +
+  geom_bar(stat = "identity", width = 0.6, position = position_dodge(width = 0.3), show.legend = FALSE) +
+  labs(title = "Net Sentiment in Pepys's Diary by Month, 1667",
+       subtitle = "Higher scores indicate greater net positivity.") + 
+  xlab("Month") +
+  ylab("Net Sentiment") +
+  theme(axis.text.x=element_text(angle=45))
+
+write_rds(net_sent_67, "~/Desktop/pepys_diary/app/net_sent_67.rds")
+
+all_entries_posneg_67 <- all_entries_67 %>% group_by(month) %>% 
+  inner_join(get_sentiments("bing")) %>% count(sentiment) %>%
+  ggplot(aes(month, n, fill = sentiment, color = sentiment)) +
+  geom_bar(stat = "identity", width = 0.6, position = position_dodge(width = 0.4), show.legend = TRUE) + 
+  labs(title = "Positive and Negative Sentiment in Pepys's Diary, by Month") + 
+  xlab("Month") +
+  ylab("Number of Words") +
+  theme(axis.text.x=element_text(angle=45))
+
+write_rds(all_entries_posneg_67, "~/Desktop/pepys_diary/app/all_entries_posneg_67.rds") 
+
+all_entries_sentiment_67 <- all_entries_67 %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment)
+
+all_entries_top_67 <- all_entries_sentiment_67 %>%
+  filter(word != "static") %>%
+  arrange(desc(n)) %>%
+  slice(1:50) %>%
+  # Make word a factor in order of n
+  mutate(word = reorder(word, n)) %>% 
+  # select(-sentiment) %>%
+  
+  gt() %>%
+  tab_header(title = "Top 50 Most-Used Words in Pepys's Diary",
+             subtitle = "1667") %>%
+  cols_label(word = "Word",
+             n = "Number of Appearances") 
+write_rds(all_entries_top_67, "~/Desktop/pepys_diary/app/all_entries_top_67.rds")
+
+```

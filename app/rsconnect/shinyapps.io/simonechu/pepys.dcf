@@ -1,0 +1,12 @@
+name: pepys
+title: pepys
+username:
+account: simonechu
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3381661
+bundleId: 3968786
+url: https://simonechu.shinyapps.io/pepys/
+when: 1607571119.31814
+asMultiple: FALSE
+asStatic: FALSE
